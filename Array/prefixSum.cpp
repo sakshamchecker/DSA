@@ -13,6 +13,27 @@ int getSum2(int a[],int n,int b,int c){
 	}
 	return prefix_sum[c]-prefix_sum[b-1];
 }
+int eqbmPoint(int a[],int n){//Naive
+	for(int i=0;i<n;i++){
+		if(getSum2(a,n,0,i-1)==getSum2(a,n,i+1,n))	return i;
+	}
+	return -1;
+}
+bool isEqbm(int a[],int n){
+	int sum=0;
+	for(int i=0;i<n;i++)	sum+=a[i];
+	int lsum=0;
+	for(int i=0;i<n;i++){
+		if(lsum=sum-a[i]){
+			return 1;
+		}
+		else{
+			sum-=arr[i];
+			lsum+=arr[i];
+		}
+	}
+	return 0;
+}
 int main(int argc, char const *argv[])
 {
 	int a[]={1,2,3,4,5,6,7};
