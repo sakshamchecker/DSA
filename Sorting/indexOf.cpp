@@ -36,6 +36,38 @@ int getIndex1(int a[],int n, int x){
 	}
 	return -1;
 }
+int getIndexLast(int a[],int low,int high,int n,int x){
+	int mid=(low+high)/2;
+	if(x>a[mid])	return getIndexLast(a,mid+1,high,n,x);
+	else if(x<a[mid])	return getIndexLast(a,low,mid-1,n,x);
+	else{
+		if(mid==n-1 || a[mid+1]!=a[mid])	return mid;
+		return getIndexLast(a,mid+1,high,n,x);
+	}
+	return -1;
+}
+int getIndexLast1(int a[],int n , int x){
+	int low=0,high=n-1;
+	while(low<=high){
+		int mid=(low+high)/2;
+		if(a[mid]>x)
+			high=mid-1;
+		else if(a[mid]<x)
+			low=mid+1;
+		else{
+			if(mid==n-1||a[mid-1]!=a[mid])
+				return mid;
+			else
+				low=mid+1;
+		}
+	}
+	return -1;
+}
+int TotalOcc(int a[],int n,int x){
+	int first = getIndex1(a,n,x);
+	if(first=-1)	return 0;
+	return getIndexLast1(a,n,x)-first+ 1;
+}
 int main(int argc, char const *argv[])
 {
 	int a[]={1,2,3,4,5,6,7,8};
