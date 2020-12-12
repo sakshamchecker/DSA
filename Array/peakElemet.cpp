@@ -10,9 +10,21 @@ int getPeak(int a[],int n){ //Naive
 int getPeak2(int a[],int n,int low,int high){
 	int mid=(low+high)/2;
 	if(low>high)	return -1;
-	if(a[mid]>a[mid+1]&&a[mid]>a[mid-1])	return a[mid];
 	if(getPeak2(a,n,mid+1,high)!=-1)	return getPeak2(a,n,mid+1,high);
 	if(getPeak2(a,n,low,mid-1)!=-1)		return getPeak2(a,n,low,mid-1);
+	return -1;
+}
+int getPeak3(int a[],int n){
+	int low=0,high=n-1;
+	while(low<=high){
+		int mid=(low+high)/2;
+		if((mid==0||a[mid-1]<=a[mid])&&(mid==n-1 || a[mid+1]<=a[mid]))
+			return mid;
+		if(mid>0 && a[mid-1]>=a[mid])
+			high=mid-1;
+		else
+			low=mid+1;
+	}
 	return -1;
 }
 int main(int argc, char const *argv[])
