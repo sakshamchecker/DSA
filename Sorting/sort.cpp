@@ -96,10 +96,19 @@ void parti2(int a[],int pivo,int len){ //lomuto(partition about specific index v
 	swap(a[i+1],a[pivo]);
 }
 void lomQSort(int a[],int l, int h){
+	begin:
 	if(l<h){
 		int p=parti(a,l,h);
-		lomQSort(a,p+1,h);
-		lomQSort(a,l,p-1);
+		lomQSort(a,l,p);
+		l=p+1;
+		goto begin;
+	}
+}
+void qSort(int a[],int l, int h){
+	if(l<h){
+		int p=parti(a,l,h);
+		qSort(a,l,h);
+		
 	}
 }
 // void naiveQSort()
