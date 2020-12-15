@@ -84,6 +84,7 @@ int parti(int a[],int l,int h){ //lomuto(Partition about last number in array)
 	swap(a[i+1],a[h]);
 	return(i+1);
 }
+
 void parti2(int a[],int pivo,int len){ //lomuto(partition about specific index value)
 	int i=-1, pivot=a[pivo];
 	for(int j=0;j<=len;j++){
