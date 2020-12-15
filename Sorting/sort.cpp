@@ -86,7 +86,7 @@ int parti(int a[],int l,int h){ //lomuto(Partition about last number in array)
 }
 void parti2(int a[],int pivo,int len){ //lomuto(partition about specific index value)
 	int i=-1, pivot=a[pivo];
-	for(int j=0;j<len;j++){
+	for(int j=0;j<=len;j++){
 		if(a[j]<pivot){
 			i++;
 			swap(a[i],a[j]);
@@ -115,8 +115,8 @@ void qSort(int a[],int l, int h){
 int main(int argc, char const *argv[])
 {
 	int a[]={4,22,5,6,28,26,7};
-	// parti2(a,3,7);	
-	lomQSort(a,0,6);
+	parti(a,0,6);	
+	//lomQSort(a,0,6);
 	for(auto x:a)	cout<<x<<endl;
 	return 0;
 }
