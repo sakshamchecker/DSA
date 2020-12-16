@@ -33,22 +33,25 @@ void seggregate31(int a[],int n){
 		a[i]=p[i];
 }
 void seggregate32(int a[],int n){
-	int l=0,r=n-1;
+	int low=0,mid=0,high=n-1;
 	//do{l++}while(a[l]==1)
-	for(int i=0;i<n;i++){
-		if(a[i]==1){
-			swap(a[i],a[l]);
-			l++;
-		}
-		if(a[i]==3){
-			swap(a[i],a[r]);
-			r--;
+	while(mid<=high){
+		switch(a[mid]){
+			case 1: swap(a[low],a[mid]);
+					low++;
+					mid++;
+					break;
+			case 2: mid++;
+					break;
+			case 3:	swap(a[mid],a[high]);
+					high--;
+					break;
 		}
 	}
 }
 int main(int argc, char const *argv[])
 {
-	int a[]={3,3,3,3,2,2,2};
+	int a[]={1,2,3,2,1,2,3};
 	seggregate32(a,7);
 	for(auto x:a){	cout<<x;}
 	return 0;
