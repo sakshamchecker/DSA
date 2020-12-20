@@ -182,12 +182,30 @@ Node *removeDupli(Node *head){
 	}
 	return head;
 }
+void deleteSpecific(Node *ptr){
+	Node *curr=ptr;
+	while(curr->next->next!=NULL){
+		curr->data=curr->next->data;
+	}
+	curr->next=NULL;
+}
+Node *seggregate(Node *head){
+	Node *curr=head,*even=head;
+	while(curr){
+		if(curr->data %2 ==0){
+			swap(curr->data,even->data);
+			even=even->next;
+		}
+		curr=curr->next;
+	}
+	return head;
+}
 int main(){
 	Node *head = new Node(10);
-	head -> next = new Node(20); 
+	head -> next = new Node(21); 
 	head -> next -> next = new Node(20);
-	head -> next -> next ->next = new Node(20);
-	cout<<head->data;
+	head -> next -> next ->next = new Node(92);
+	// head=head->data;
 	// head=insertEnd(head,50);
 	// cout<<listSearch(head,0);
 	// head=insertEnd(head,5);
@@ -201,5 +219,7 @@ int main(){
 	// head=reverse4(head);
 	// head=removeDupli(head);
 	// listTrans2(head);
+	head=seggregate(head);
+	listTrans2(head);
 	return 0;
 }
