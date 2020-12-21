@@ -3,7 +3,8 @@ using namespace std;
 class kstacks{
 	int *arr,*top,*next;
 	int k,cap,freetop;
-	kstacks(int k1, int n){
+public:
+	kstacks(int k1, int cap){
 		arr=new int[cap];
 		top=new int[k];
 		next= new int[cap];
@@ -14,6 +15,25 @@ class kstacks{
 		for(int i=0;i<cap-1;i++){
 			next[i]=i+1;
 		}
-		next[top-1]=-1;
+		next[freetop-1]=-1;
 	}
+	void push(int x,int m){
+		int i=freetop;
+		freetop=next[i];
+		next[i]=top[m];
+		top[m]=i;
+		arr[i]=x;
+	}
+	int pop(int m){
+		int i=top[m];
+		top[m]=next[i];
+		next[i]=freetop;
+		freetop=i;
+		return arr[i];
+	}
+};
+int main(int argc, char const *argv[])
+{
+	kstacks *a=new kstacks(5,10);
+	return 0;
 }
