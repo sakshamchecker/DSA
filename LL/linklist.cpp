@@ -4,9 +4,11 @@ using namespace std;
 struct Node{
 	int data;
 	Node *next;
+	bool flag;
 	Node(int x){
 		data=x;
 		next=NULL;
+		flag=0;
 	}
 };
 void listTrans(Node *he){//loop
@@ -200,13 +202,85 @@ Node *seggregate(Node *head){
 	}
 	return head;
 }
+int getIntersection(Node *h1,Node *h2){
+	Node *c1=h1,*c2=h2;
+	while(c1->next!=NULL){
+		c1->flag=1;
+		c1=c1->next;
+	}
+	while(c2->flag){
+		c2=c2->next;
+	}
+	return c2->data;
+}
+int getIntersection2(Node *h1,Node *h2){
+	Node *c1=h1,*c2=h2;
+	int l1=0,l2=0;
+	while(c1){
+		c1=c1->next;
+		l1++;
+	}
+	while(c2){
+		c2=c2->next;
+		l2++;
+	}
+	if(l1>l2){
+		int diff=l1-l2;
+		c1=h1;
+		c2=h2;
+		while(diff--){
+			c1=c1->next;
+		}
+		while(c1 && c2){
+			if(c1==c2)	return c1->data;
+			c1=c1->next;
+			c2=c2->next;
+		}
+	}
+	else if(l1>l2){
+		int diff=l2-l1;
+		c1=h1;
+		c2=h2;
+		while(diff--){
+			c2=c2->next;
+		}
+		while(c1&& c2){
+			if(c1==c2)	return c1->data;
+			c1=c1->next;
+			c2=c2->next;
+		}
+	}
+	return -1;
+}
+void swapPairs(Node *head){
+	Node *curr=head;
+	while(curr&&curr->next){
+		swap(curr->data,curr->next->data);
+		curr=curr->next->next;
+	}
+}
+Node * swapPairs2(Node *head){
+	if(head==NULL || head->next==NULL)	return head;
+	Node *curr=head->next->next, *prev=head;
+	head=head->next;
+	head->next=prev;
+	while(curr && curr->next){
+		prev->next=curr->next;
+		prev=curr;
+		Node *next=curr->next->next;
+		curr->next->next=curr;
+		curr=next;
+	}
+	prev->next=NULL;
+	return head;
+}
 int main(){
 	Node *head = new Node(10);
 	head -> next = new Node(21); 
 	head -> next -> next = new Node(20);
 	head -> next -> next ->next = new Node(92);
 	// head=head->data;
-	// head=insertEnd(head,50);
+	head=insertEnd(head,50);
 	// cout<<listSearch(head,0);
 	// head=insertEnd(head,5);
 	// head=delFirst(head);
@@ -219,7 +293,8 @@ int main(){
 	// head=reverse4(head);
 	// head=removeDupli(head);
 	// listTrans2(head);
-	head=seggregate(head);
+	//head=seggregate(head);
+	swapPairs(head);
 	listTrans2(head);
 	return 0;
 }
