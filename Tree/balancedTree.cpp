@@ -22,3 +22,12 @@ bool checkBalanced(Node *root){
 	int rh=getHeight(root->right);
 	return (abs(lh-rh)<=1  && checkBalanced(root->left)&&checkBalanced(root->right));
 }
+int checkBalanced1(Node *root){
+	if(root==NULL)	return 0;
+	int lh=isBalanced(root->left);
+	if(lh==-1)	return -1;
+	int rh=isBalanced(root->right);
+	if(rh==-1)	return -1;
+	if(abs(lh-rh)>1)	return -1;
+	else return max(lh,rh)+1;
+}
