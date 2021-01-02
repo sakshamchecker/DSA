@@ -33,6 +33,7 @@ void printMedian(int a[],int n){
 }
 
 
+
 int main(int argc, char const *argv[])
 {
 	int a[]={6,3,5,3,1,2,3,4};
