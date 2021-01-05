@@ -24,7 +24,7 @@ vector<int> getGreater1(int a[],int n){ //Index
     b[n-1]=0;
     s.push(n);
     for(int i=n-2;i>=0;i--){
-        while(s.empty()==0 && a[i]>=a[s.top()-1]){
+        while(s.empty()==0 && a[i]>a[s.top()-1]){
             s.pop();
         }
         b[i]=s.empty()?0:s.top();
