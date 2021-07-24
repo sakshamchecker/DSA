@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 using namespace std;
 void bubsort(int a[],int n){
 	// bool swapped;
@@ -121,3 +122,18 @@ int main(int argc, char const *argv[])
 	for(auto x:a)	cout<<x<<endl;
 	return 0;
 }
+
+
+
+cout<<factorial(5);
+
+
+
+i 	j 
+0	0-n
+1	0-n
+
+
+
+
+ n  
